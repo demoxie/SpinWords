@@ -1,26 +1,31 @@
 package com.company;
 
-import java.util.Scanner;
+import java.util.Arrays;
 
 public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        Scanner sc = new Scanner(System.in);
-        System.out.println(SpinWords(sc.nextLine()));
+       System.out.println(spinWords("I am coming immediately"));
+
     }
-    public static String SpinWords(String str){
+    public static String spinWords(String sentence) {
+        //Code stuff here
         StringBuilder sb;
         StringBuilder result= new StringBuilder();
-        String[] stringArr = str.split(" ");
-        for(String words: stringArr){
-            if(words.length()>=5){
-                sb = new StringBuilder(words);
-                sb.reverse();
-                result.append(" ").append(sb);
-            }else{
-                result.append(" ").append(words);
+        String[] stringArr = sentence.split(" ");
+        if(stringArr.length>1){
+            for(int i=0;i<stringArr.length;i++){
+                if(stringArr[i].length()>=5){
+                    sb = new StringBuilder(stringArr[i]).reverse();
+                    stringArr[i] = sb.toString();
+                }
+                if(i == stringArr.length-1){
+                    return String.join(" ",stringArr);
+                }
             }
+        }else{
+            result.append(new StringBuilder(sentence).reverse());
         }
         return result.toString();
     }
